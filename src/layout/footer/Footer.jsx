@@ -6,9 +6,10 @@ const Footer = () => {
         <footer className="footer footer-center p-10  bg-neutral text-neutral-content">
             <div>
                 <img src={logo} alt="Logo" className='w-24 h-16' />
-                <p className="font-bold">
-                    Pics Now <br />Providing reliable tech since 2022
+                <p className="font-bold text-secondary">
+                    Pics<span className='text-primary'>Now</span>
                 </p>
+                <p>Providing reliable tech since 2022</p>
                 <p>Copyright © 2023 - All right reserved</p>
             </div>
             <div>
