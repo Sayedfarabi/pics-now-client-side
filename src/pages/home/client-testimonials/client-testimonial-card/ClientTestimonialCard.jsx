@@ -4,7 +4,7 @@ const ClientTestimonialCard = () => {
     return (
         <div className='w-56 h-72 border-2 rounded-md bg-base-100 mx-auto relative my-12'>
             <div className="avatar">
-                <div className="w-24 rounded-full absolute -top-20 -right-40 border-white border-4">
+                <div className="w-24 rounded-full absolute -top-20 -right-40 border-primary border-2">
                     <img src="https://www.pngall.com/wp-content/uploads/5/Profile-Male-PNG.png" />
                 </div>
             </div>

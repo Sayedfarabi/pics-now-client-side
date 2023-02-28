@@ -1,28 +1,58 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
 import { AuthContext } from '../../context/AuthProvider';
 
 
 const AddService = () => {
-    // const { name } = useContext(AuthContext);
-    // console.log(name);
+    const imgBbKey = process.env.REACT_APP_imageBb_api_key;
+    const imgBbApi = `https://api.imgbb.com/1/upload?key=${imgBbKey}`;
     const [error, setError] = useState();
     const { register, handleSubmit, formState: { errors }, resetField } = useForm();
 
     const submitHandler = data => {
-        console.log(data);
+        const image = data.image[0];
+        const formData = new FormData();
+        formData.append('image', image)
+
+        fetch(imgBbApi, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(result => {
+                const imageURL = result.data.url;
+                data.image = imageURL
+                // console.log(data);
+                fetch("http://localhost:5000/addService", {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            setError("")
+                            toast.success(data.message)
+                        } else {
+                            toast.error(data.message)
+                            setError(data.message)
+                        }
+                    })
+            })
 
         resetField("title")
         resetField("body")
         resetField("price")
-        resetField("rating")
         resetField("image")
     }
 
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col mx-4">
-                <h3 className='text-center text-3xl my-8 font-semibold border-b-2 border-primary py-2 text-secondary'>Service add to Database</h3>
+                <h3 className='text-center text-3xl mb-8 font-semibold border-b-2 border-primary py-2 text-secondary'>Service add to Database</h3>
                 <div className="card flex-shrink-0 w-full md:1/2 mx-auto shadow-2xl bg-base-100 ">
                     <div className='text-center text-red-500 pt-4'>
                         <p>{error}</p>
@@ -51,13 +81,7 @@ const AddService = () => {
                                         <p className='text-red-500'>{errors?.price?.message}</p>
                                     }
                                 </div>
-                                <div className="form-control my-2">
-                                    <input {...register("rating", { required: "Service rating is must be required" })} type="number" name='rating' placeholder="Service rating point ( 0.00 )" className="input input-bordered" />
-                                    {
-                                        errors?.rating &&
-                                        <p className='text-red-500'>{errors?.rating?.message}</p>
-                                    }
-                                </div>
+
                                 <div className="form-control my-2">
                                     <label className="label">
                                         <span className="label-text text-gray-500">Select Service Photo :</span>

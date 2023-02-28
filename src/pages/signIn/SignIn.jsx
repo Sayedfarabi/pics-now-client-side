@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
 const SignIn = () => {
@@ -9,6 +9,8 @@ const SignIn = () => {
     const [error, setError] = useState();
     const { register, handleSubmit, formState: { errors }, resetField } = useForm();
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     const submitHandler = data => {
         // console.log(data);
@@ -17,7 +19,7 @@ const SignIn = () => {
         signIn(email, password)
             .then(result => {
                 setError("")
-                navigate("/")
+                navigate(from)
                 toast.success("sign in successful")
                 const userEmail = {
                     email: email
@@ -45,8 +47,8 @@ const SignIn = () => {
                 toast.error(error?.message)
             })
 
-        // resetField("email")
-        // resetField("password")
+        resetField("email")
+        resetField("password")
     }
 
     const googleHandle = () => {
@@ -54,7 +56,7 @@ const SignIn = () => {
             .then(result => {
                 // console.log(result);
                 setError("")
-                navigate("/")
+                navigate(from)
                 toast.success("sign in with google successful")
                 const { displayName, email, photoURL } = result?.user;
                 const userData = {
@@ -108,7 +110,7 @@ const SignIn = () => {
         signInWithGitHub()
             .then(result => {
                 setError("")
-                navigate("/")
+                navigate(from)
                 toast.success("sign in with gitHub successfully")
             })
             .catch(error => {

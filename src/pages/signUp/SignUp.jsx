@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Loading from '../../components/loading/Loading';
 import { AuthContext } from '../../context/AuthProvider';
 // import { useImage } from '../../custom-hook/customHook';
@@ -13,6 +13,8 @@ const SignUp = () => {
     const imgBbKey = process.env.REACT_APP_imageBb_api_key;
     const imgBbApi = `https://api.imgbb.com/1/upload?key=${imgBbKey}`;
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
 
     const submitHandler = data => {
@@ -45,7 +47,7 @@ const SignUp = () => {
                         updateUser(userInfo)
                             .then(result => {
                                 setError("")
-                                navigate("/")
+                                navigate(from)
                                 fetch("http://localhost:5000/addUser", {
                                     method: "POST",
                                     headers: {
