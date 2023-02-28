@@ -6,7 +6,7 @@ const HomeServices = () => {
     return (
         <div className='py-12'>
             <div className='text-center'>
-                <h1 className='text-4xl border-b-4 border-orange-500 inline'> Services </h1>
+                <h1 className='text-3xl border-b-4 border-orange-500 inline'> SERVICES </h1>
             </div>
             <div className='grid grid-cols-1 md:grid-cols-3 gap-3 py-8'>
                 <ServiceCard></ServiceCard>

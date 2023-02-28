@@ -27,9 +27,6 @@ const ClientTestimonialCard = () => {
                     </blockquote>
                 </div>
 
-
-
-
             </div>
 
         </div>

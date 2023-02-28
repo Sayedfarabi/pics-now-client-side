@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthProvider';
 import logo from '../../assets/logo/logo.png';
+import toast from 'react-hot-toast';
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
+    // console.log(user);
+
+
+    const signOut = () => {
+        logOut()
+            .then(result => {
+                toast.success("user already sign out")
+            })
+            .catch(error => {
+                toast.error(error?.message)
+            })
+    }
+
     return (
         <div className="navbar bg-slate-200">
             <div className="navbar-start">
@@ -29,7 +45,7 @@ const Navbar = () => {
                 </div>
                 <Link to={"/"} className="btn btn-ghost normal-case text-xl">
                     <div className='flex justify-center items-center'>
-                        <div className='mx-2'>
+                        <div className='mx-2 hidden lg:block'>
                             <img src={logo} alt="Logo" className='w-12 h-6' />
                         </div>
                         <div>
@@ -57,40 +73,49 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className='navbar-end flex items-center'>
-                <div>
-                    <div>
-                        <ul className="menu menu-horizontal px-1">
-                            <li className='mx-2 rounded-md font-semibold hover:text-primary'>
-                                <Link to={"/signIn"}>Sign in</Link>
-                            </li>
-                            <li className='rounded-md font-semibold hover:text-secondary'>
-                                <Link to={"/signUp"}>Sign up</Link>
-                            </li>
+                {
+                    !(user?.uid) ?
+                        <div>
+                            <div>
+                                <ul className="menu menu-horizontal px-1">
+                                    <li className='mx-2 rounded-md font-semibold text-primary'>
+                                        <Link to={"/signIn"}>Sign in</Link>
+                                    </li>
+                                    <li className='rounded-md font-semibold text-secondary'>
+                                        <Link to={"/signUp"}>Sign up</Link>
+                                    </li>
 
-                        </ul>
-                    </div>
+                                </ul>
+                            </div>
 
-                </div>
-                <div className="dropdown dropdown-end">
-                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full">
-                            <img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKoDFg1euj4I_lWhYiiDGKnUyqVJN_gDHnR3GzWko&s"} alt="user photo" />
                         </div>
-                    </label>
-                    <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-                        <li>
-                            <Link to={"/"} className="justify-between">
-                                Profile
-                                <span className="badge">New</span>
-                            </Link>
-                        </li>
-                        <li><Link to={"/"}>Settings</Link></li>
-                        <li>
-                            <button className='btn btn-acc
-                             btn-sm w-full text-white hover:text-primary my-4'>Sign out</button>
-                        </li>
-                    </ul>
-                </div>
+                        :
+                        <div className="dropdown dropdown-end">
+                            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                                <div className="w-10 rounded-full">
+                                    <img src={user?.photoURL
+                                    } alt="profile photo" />
+                                </div>
+                            </label>
+                            <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+                                <li>
+                                    <p className='mx-auto text-green-500'>{user?.displayName}</p>
+                                </li>
+                                <li>
+                                    <Link to={"/"} className="justify-between">
+                                        Profile
+                                        <span className="badge">New</span>
+                                    </Link>
+                                </li>
+                                <li><Link to={"/"}>Settings</Link></li>
+                                <li>
+                                    <button onClick={signOut} className='btn btn-black btn-sm w-full text-white hover:text-primary my-4'>
+                                        Sign out
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                }
             </div>
 
         </div>

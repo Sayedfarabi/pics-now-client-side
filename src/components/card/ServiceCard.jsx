@@ -10,7 +10,7 @@ const ServiceCard = () => {
                 <h2 className="card-title">Life hack</h2>
                 <p>How to park your car at your garage?</p>
                 <div className="card-actions justify-end">
-                    <button className="btn btn-sm text-secondary hover:text-orange-500 bg-neutral-600">Details</button>
+                    <button className="btn btn-sm text-secondary hover:text-orange-500 bg-black">Details</button>
                 </div>
             </div>
         </div>
