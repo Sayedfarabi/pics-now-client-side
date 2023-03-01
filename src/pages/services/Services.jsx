@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import ServiceCard from '../../components/card/ServiceCard';
 import { DataContext } from '../../layout/Root';
+import ContactMe from '../home/contact-me/ContactMe';
 
 const Services = () => {
     const { services } = useContext(DataContext)
@@ -19,6 +20,9 @@ const Services = () => {
                         </ServiceCard>
                     })
                 }
+            </div>
+            <div>
+                <ContactMe></ContactMe>
             </div>
 
         </section>

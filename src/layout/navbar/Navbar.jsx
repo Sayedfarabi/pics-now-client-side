@@ -35,7 +35,7 @@ const Navbar = () => {
                             <Link to={"/services"}>Services</Link>
                         </li>
                         <li className='mx-2 rounded-md font-semibold hover:text-primary'>
-                            <Link to={"/my-reviews"}>My Reviews</Link>
+                            <Link to={"/my-reviews"}>Your Reviews</Link>
                         </li>
                         <li className='mx-2 rounded-md font-semibold hover:text-primary'>
                             <Link to={"/add-service"}>Add Service</Link>
@@ -67,7 +67,7 @@ const Navbar = () => {
                         <Link to={"/services"}>Services</Link>
                     </li>
                     <li className='mx-2 rounded-md font-semibold hover:text-primary'>
-                        <Link to={"/my-reviews"}>My Reviews</Link>
+                        <Link to={"/my-reviews"}>Your Reviews</Link>
                     </li>
                     <li className='mx-2 rounded-md font-semibold hover:text-primary'>
                         <Link to={"/add-service"}>Add Service</Link>

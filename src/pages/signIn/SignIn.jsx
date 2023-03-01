@@ -16,6 +16,7 @@ const SignIn = () => {
         // console.log(data);
         const email = data.email;
         const password = data.password;
+
         signIn(email, password)
             .then(result => {
                 setError("")
@@ -24,7 +25,7 @@ const SignIn = () => {
                 const userEmail = {
                     email: email
                 }
-                fetch("http://localhost:5000/getToken", {
+                fetch("https://pics-now-server-side.vercel.app/getToken", {
                     method: "POST",
                     headers: {
                         "content-type": "application/json",
@@ -62,11 +63,12 @@ const SignIn = () => {
                 const userData = {
                     name: displayName,
                     email: email,
-                    image: photoURL
+                    image: photoURL,
+                    userRole: "user"
                 }
                 console.log(userData);
 
-                fetch("http://localhost:5000/addUser", {
+                fetch("https://pics-now-server-side.vercel.app/addUser", {
                     method: "POST",
                     headers: {
                         "content-type": "application/json",
@@ -79,7 +81,7 @@ const SignIn = () => {
                             const userEmail = {
                                 email: userData.email
                             }
-                            fetch("http://localhost:5000/getToken", {
+                            fetch("https://pics-now-server-side.vercel.app/getToken", {
                                 method: "POST",
                                 headers: {
                                     "content-type": "application/json",

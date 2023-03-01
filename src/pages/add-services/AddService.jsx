@@ -24,7 +24,7 @@ const AddService = () => {
                 const imageURL = result.data.url;
                 data.image = imageURL
                 // console.log(data);
-                fetch("http://localhost:5000/addService", {
+                fetch("https://pics-now-server-side.vercel.app/addService", {
                     method: "POST",
                     headers: {
                         "content-type": "application/json"

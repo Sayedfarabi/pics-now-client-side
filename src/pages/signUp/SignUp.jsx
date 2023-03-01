@@ -30,7 +30,8 @@ const SignUp = () => {
             .then(result => {
                 const imageUrl = result?.data?.url;
                 data.image = imageUrl;
-                const { name, email, password, image } = data;
+                data.userRole = "user";
+                const { name, email, password, image, userRole } = data;
                 const userInfo = {
                     displayName: name,
                     photoURL: imageUrl
@@ -38,7 +39,8 @@ const SignUp = () => {
                 const userData = {
                     name,
                     email,
-                    image
+                    image,
+                    userRole
                 }
                 createUser(email, password)
                     .then(result => {
@@ -48,7 +50,7 @@ const SignUp = () => {
                             .then(result => {
                                 setError("")
                                 navigate(from)
-                                fetch("http://localhost:5000/addUser", {
+                                fetch("https://pics-now-server-side.vercel.app/addUser", {
                                     method: "POST",
                                     headers: {
                                         "content-type": "application/json",
@@ -61,7 +63,7 @@ const SignUp = () => {
                                             const userEmail = {
                                                 email
                                             }
-                                            fetch("http://localhost:5000/getToken", {
+                                            fetch("https://pics-now-server-side.vercel.app/getToken", {
                                                 method: "POST",
                                                 headers: {
                                                     "content-type": "application/json",

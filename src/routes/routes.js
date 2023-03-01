@@ -33,7 +33,8 @@ export const routes = createBrowserRouter([
             },
             {
                 path: "/service/:id",
-                element: <PrivateRoute><ServiceDetails></ServiceDetails></PrivateRoute>
+                element: <PrivateRoute><ServiceDetails></ServiceDetails></PrivateRoute>,
+                loader: async ({ params }) => await fetch(`https://pics-now-server-side.vercel.app/service/${params.id}`)
             },
             {
                 path: "/my-reviews",
