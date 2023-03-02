@@ -66,8 +66,8 @@ const ServiceDetails = () => {
 
 
     return (
-        <section>
-            <div className='mx-8 md:mx-12 my-8 md:my-12'>
+        <section className='bg-gradient-to-b from-indigo-100 via-purple-100 to-pink-100'>
+            <div className='px-8 md:px-12 py-8 md:py-12'>
                 <div className='py-8 text-center'>
                     <h2 className='text-2xl inline border-b-2 border-primary font-semibold'>SERVICE DESCRIPTION</h2>
                 </div>

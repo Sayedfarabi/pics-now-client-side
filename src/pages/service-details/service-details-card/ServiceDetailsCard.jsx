@@ -3,7 +3,7 @@ import React from 'react';
 const ServiceDetailsCard = ({ service }) => {
     const { title, image, body, price } = service;
     return (
-        <div className="card w-full mx-auto p-4 bg-base-100 shadow-xl">
+        <div className="card w-full mx-auto p-4 bg-base-100 shadow-xl bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100">
             <div className="card-body">
                 <div className='flex flex-col md:flex-row md:justify-between md:items-center'>
                     <div>

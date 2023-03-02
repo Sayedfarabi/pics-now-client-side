@@ -11,14 +11,16 @@ const Home = () => {
             <header>
                 <Slider></Slider>
             </header>
-            <section>
-                <HomeServices></HomeServices>
-            </section>
-            <section>
-                <Examples></Examples>
-            </section>
-            <section>
-                <ClientTestimonials></ClientTestimonials>
+            <section className='bg-gradient-to-b from-indigo-100 via-purple-100 to-pink-100'>
+                <section>
+                    <HomeServices></HomeServices>
+                </section>
+                <section>
+                    <Examples></Examples>
+                </section>
+                <section>
+                    <ClientTestimonials></ClientTestimonials>
+                </section>
             </section>
             <section>
                 <ContactMe></ContactMe>

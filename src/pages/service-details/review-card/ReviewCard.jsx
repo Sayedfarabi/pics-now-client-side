@@ -16,7 +16,7 @@ const ReviewCard = ({ review }) => {
     // console.log(pathname === detailsPathname);
     // console.log(serviceId);
     return (
-        <div className='w-full p-4 my-4 border border-primary rounded-md min-h-48'>
+        <div className='w-full p-4 my-4 border border-primary rounded-md min-h-48 bg-gradient-to-l from-sky-200 to-indigo-200 accent-slate-200'>
             <div className='flex flex-col md:flex-row'>
                 <div className='px-4 md:px-8 flex items-center justify-center'>
                     {
@@ -42,14 +42,14 @@ const ReviewCard = ({ review }) => {
                         {
                             (detailsPath === pathname) &&
                             <div>
-                                <p className=' font-semibold'>Reviewer Name : <span className='font-normal'>{reviewerName}</span></p>
+                                <p className=' font-semibold text-xl'>Reviewer Name : <span className='font-normal'>{reviewerName}</span></p>
                                 <p className='text-sm font-semibold'>Reviewer Email : <span className='font-normal'>{reviewerEmail}</span></p>
                             </div>
                         }
                         {
                             (myReviewsPath === pathname) &&
                             <div>
-                                <p className=' font-semibold'>Service Title : {serviceTitle}</p>
+                                <p className=' font-semibold text-xl'>Service Title : {serviceTitle}</p>
                                 <p className='text-sm'>Service ID : {serviceId}</p>
                             </div>
                         }
@@ -73,7 +73,7 @@ const ReviewCard = ({ review }) => {
                     </div>
                     <div className='h-2/4 py-2 rounded-md'>
                         <div>
-                            <p className='text-gray-500'>Review : {body}</p>
+                            <p className='text-gray-800'>Review : {body}</p>
                         </div>
 
                     </div>

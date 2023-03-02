@@ -9,7 +9,7 @@ const Services = () => {
     return (
         <section>
 
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-3 my-8'>
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-3 py-8 bg-gradient-to-b from-indigo-100 via-purple-100 to-pink-100'>
                 {
                     services &&
                     services.map(service => {

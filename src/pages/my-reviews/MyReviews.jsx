@@ -18,7 +18,7 @@ const MyReviews = () => {
         return <Loading></Loading>
     }
     return (
-        <section className='mx-8 md:mx-12 my-8'>
+        <section className='px-8 md:px-12 py-8 bg-gradient-to-b from-indigo-100 via-purple-100 to-pink-100'>
             <div>
                 {
                     serviceReviews.length > 0 ?
