@@ -27,7 +27,8 @@ const AddService = () => {
                 fetch("https://pics-now-server-side.vercel.app/addService", {
                     method: "POST",
                     headers: {
-                        "content-type": "application/json"
+                        "content-type": "application/json",
+                        authorization: `bearer ${localStorage.getItem('furnitureBea-token')}`
                     },
                     body: JSON.stringify(data)
                 })

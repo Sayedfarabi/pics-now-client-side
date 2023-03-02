@@ -13,8 +13,7 @@ const ReviewCard = ({ review }) => {
     const pathname = location?.pathname;
     const detailsPath = `/service/${serviceId}`;
     const myReviewsPath = `/my-reviews`;
-    // console.log(pathname === detailsPathname);
-    // console.log(serviceId);
+
     return (
         <div className='w-full p-4 my-4 border border-primary rounded-md min-h-48 bg-gradient-to-l from-sky-200 to-indigo-200 accent-slate-200'>
             <div className='flex flex-col md:flex-row'>

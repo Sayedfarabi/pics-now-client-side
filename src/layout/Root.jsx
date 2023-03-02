@@ -16,7 +16,12 @@ const Root = () => {
         queryKey: ["/reviews"],
         queryFn: async () => {
             try {
-                const res = await fetch("https://pics-now-server-side.vercel.app/reviews")
+                const res = await fetch("https://pics-now-server-side.vercel.app/reviews", {
+                    headers: {
+                        "content-type": "application/json",
+                        authorization: `bearer ${localStorage.getItem('furnitureBea-token')}`
+                    }
+                })
                 const data = await res.json()
                 return data
             } catch (error) {

@@ -34,7 +34,12 @@ export const routes = createBrowserRouter([
             {
                 path: "/service/:id",
                 element: <PrivateRoute><ServiceDetails></ServiceDetails></PrivateRoute>,
-                loader: async ({ params }) => await fetch(`https://pics-now-server-side.vercel.app/service/${params.id}`)
+                loader: async ({ params }) => await fetch(`https://pics-now-server-side.vercel.app/service/${params.id}`, {
+                    headers: {
+                        "content-type": "application/json",
+                        authorization: `bearer ${localStorage.getItem('furnitureBea-token')}`
+                    }
+                })
             },
             {
                 path: "/my-reviews",
