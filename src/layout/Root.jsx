@@ -12,7 +12,7 @@ const Root = () => {
     // const reviews = data.data?.reviews?.data;
     const users = data.data?.users?.data;
 
-    const { data: reviewsData = [], isLoading, refetch } = useQuery({
+    const { data: reviewsData = [], isLoading, refetch: reviewRefetch } = useQuery({
         queryKey: ["/reviews"],
         queryFn: async () => {
             try {
@@ -36,7 +36,7 @@ const Root = () => {
         reviewsData,
         users,
         isLoading,
-        refetch
+        reviewRefetch
     }
 
     // console.log(databaseData);
@@ -45,7 +45,7 @@ const Root = () => {
         <>
             <DataContext.Provider value={databaseData}>
                 <Navbar></Navbar>
-                <div style={{ minHeight: "90vh" }}>
+                <div className='bg-gradient-to-b from-indigo-100 via-purple-100 to-pink-100' style={{ minHeight: "90vh" }}>
                     <Outlet></Outlet>
                 </div>
                 <Footer></Footer>

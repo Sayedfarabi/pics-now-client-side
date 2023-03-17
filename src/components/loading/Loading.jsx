@@ -3,7 +3,7 @@ import React from 'react';
 const Loading = () => {
     return (
         <>
-            <p className='text-center my-16'>Loading...</p>
+            <p className='text-center py-16'>Loading...</p>
         </>
     );
 };

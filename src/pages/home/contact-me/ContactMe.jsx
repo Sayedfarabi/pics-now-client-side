@@ -18,7 +18,6 @@ const ContactMe = () => {
                 console.log(error.text);
                 toast.error("Your message can't send")
             });
-
     }
 
     return (

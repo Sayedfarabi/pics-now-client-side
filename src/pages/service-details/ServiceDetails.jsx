@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { useLoaderData } from 'react-router-dom';
@@ -9,13 +9,14 @@ import ReviewCard from './review-card/ReviewCard';
 import ServiceDetailsCard from './service-details-card/ServiceDetailsCard';
 
 const ServiceDetails = () => {
+    const [modalData, setModalData] = useState(null);
     const { user } = useContext(AuthContext);
-    const { users, reviewsData, isLoading, refetch } = useContext(DataContext);
+    const { reviewsData, isLoading, reviewRefetch } = useContext(DataContext);
     const reviews = reviewsData?.data;
     // Routes Loader Data : 
     const data = useLoaderData();
     const service = data?.data;
-
+    // console.log(modalData);
     // Auth User Info : 
     const userName = user?.displayName;
     const userEmail = user?.email;
@@ -28,6 +29,7 @@ const ServiceDetails = () => {
 
 
     const { register, handleSubmit, resetField } = useForm();
+    const { register: updateReviewRegister, handleSubmit: updateReviewHandleSubmit } = useForm();
 
     const reviewHandler = data => {
         if (data) {
@@ -44,14 +46,14 @@ const ServiceDetails = () => {
                 method: "POST",
                 headers: {
                     "content-type": "application/json",
-                    authorization: `bearer ${localStorage.getItem('furnitureBea-token')}`
+                    authorization: `bearer ${localStorage.getItem('picsNow')}`
                 },
                 body: JSON.stringify(reviewData)
             })
                 .then(res => res.json())
                 .then(data => {
                     if (data.success) {
-                        refetch()
+                        reviewRefetch()
                         toast.success(data?.message)
                     } else {
                         toast.error(data.message)
@@ -59,6 +61,31 @@ const ServiceDetails = () => {
                 })
         }
         resetField("review")
+    }
+
+    const updateReview = data => {
+        if (data) {
+
+            fetch(`http://localhost:5000/updateReview?id=${modalData?._id}`, {
+                method: "PATCH",
+                headers: {
+                    "content-type": "application/json",
+                    authorization: `bearer ${localStorage.getItem('picsNow')}`
+                },
+                body: JSON.stringify(data)
+            })
+                .then(res => res.json())
+                .then(result => {
+                    if (result?.success) {
+                        setModalData(null)
+                        reviewRefetch()
+                        toast.success(result?.message)
+                    } else {
+                        toast.error(result?.message)
+                        console.log(result);
+                    }
+                })
+        }
     }
 
     if (isLoading) {
@@ -72,6 +99,7 @@ const ServiceDetails = () => {
                 <div className='py-8 text-center'>
                     <h2 className='text-2xl inline border-b-2 border-primary font-semibold'>SERVICE DESCRIPTION</h2>
                 </div>
+
                 <div>
                     <div>
                         <div className='my-8'>
@@ -96,7 +124,9 @@ const ServiceDetails = () => {
                                     serviceReviews.map(review => {
                                         return <ReviewCard
                                             key={review?._id}
-                                            review={review}>
+                                            review={review}
+                                            setModalData={setModalData}
+                                        >
                                         </ReviewCard>
                                     })
                                 }
@@ -119,6 +149,30 @@ const ServiceDetails = () => {
                         </div>
                     </div>
                 </div>
+
+                {
+                    modalData &&
+                    <div>
+                        <input type="checkbox" id="update-review" className="modal-toggle" />
+                        <div className="modal">
+                            <div className="modal-box relative">
+                                <label htmlFor="update-review" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                                <h3 className="text-lg font-bold">For <span className='text-blue-400'>{modalData?.serviceTitle}</span> review update!</h3>
+                                <form onSubmit={updateReviewHandleSubmit(updateReview)}>
+                                    <div className='py-4'>
+                                        <input {...updateReviewRegister("body", { required: true })} type={"text"} className="textarea w-full textarea-success py-8" name="body" defaultValue={modalData?.body}>
+                                        </input>
+                                    </div>
+                                    <div className='flex justify-end items-center my-2'>
+                                        <div>
+                                            <input type="submit" value="Update" className='btn btn-sm bg-orange-500 text-white' />
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         </section>
     );

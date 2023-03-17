@@ -1,18 +1,40 @@
 import React, { useContext } from 'react';
+import { toast } from 'react-hot-toast';
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
 import { useLocation } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
+import { DataContext } from '../../../layout/Root';
 
-const ReviewCard = ({ review }) => {
-    const { reviewerName, reviewerEmail, reviewerImage, body, serviceId, serviceImage, serviceTitle } = review;
-
+const ReviewCard = ({ review, setModalData }) => {
+    const { _id, reviewerName, reviewerEmail, reviewerImage, body, serviceId, serviceImage, serviceTitle } = review;
+    // console.log(_id);
     const { user } = useContext(AuthContext);
+    const { reviewRefetch } = useContext(DataContext)
     const userEmail = user?.email;
 
     const location = useLocation();
     const pathname = location?.pathname;
     const detailsPath = `/service/${serviceId}`;
     const myReviewsPath = `/my-reviews`;
+
+    const deleteHandler = (_id) => {
+        fetch(`http://localhost:5000/deleteReview?id=${_id}`, {
+            method: "DELETE",
+            headers: {
+                "content-type": "application/json",
+                authorization: `bearer ${localStorage.getItem('picsNow')}`
+            }
+        })
+            .then(res => res.json())
+            .then(result => {
+                if (result.success) {
+                    reviewRefetch()
+                    toast.success(result?.message)
+                } else {
+                    toast.error(result?.message)
+                }
+            })
+    }
 
     return (
         <div className='w-full p-4 my-4 border border-primary rounded-md min-h-48 bg-gradient-to-l from-sky-200 to-indigo-200 accent-slate-200'>
@@ -58,12 +80,11 @@ const ReviewCard = ({ review }) => {
                             <div className='flex flex-col md:flex-row'>
 
                                 <div>
-                                    <button className='btn btn-sm btn-red-500 text-yellow-600 text-2xl bg-white border-1 md:mx-2'>
-                                        <AiFillEdit></AiFillEdit>
-                                    </button>
+                                    <label onClick={() => setModalData(review)} htmlFor="update-review" className="btn btn-sm btn-red-500 text-yellow-600 text-2xl bg-white border-1 md:mx-"> <AiFillEdit></AiFillEdit></label>
+
                                 </div>
                                 <div className='mb-2 md:mb-0'>
-                                    <button className='btn btn-sm btn-red-500 text-red-500 text-2xl bg-white border-1 md:mx-2'>
+                                    <button onClick={() => deleteHandler(_id)} className='btn btn-sm btn-red-500 text-red-500 text-2xl bg-white border-1 md:mx-2'>
                                         <AiFillDelete></AiFillDelete>
                                     </button>
                                 </div>
