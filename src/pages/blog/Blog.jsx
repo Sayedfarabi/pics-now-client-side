@@ -1,5 +1,6 @@
 import React from 'react';
 import bannerImg from '../../assets/images/blog-images/blog-header.jpg';
+import ContactMe from '../home/contact-me/ContactMe';
 
 const Blog = () => {
     return (
@@ -76,6 +77,7 @@ const Blog = () => {
                 </div>
 
             </div>
+            <ContactMe></ContactMe>
         </section>
     );
 };

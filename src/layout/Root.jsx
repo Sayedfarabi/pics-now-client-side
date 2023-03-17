@@ -19,7 +19,7 @@ const Root = () => {
                 const res = await fetch("https://pics-now-server-side.vercel.app/reviews", {
                     headers: {
                         "content-type": "application/json",
-                        authorization: `bearer ${localStorage.getItem('furnitureBea-token')}`
+                        authorization: `bearer ${localStorage.getItem('picsNow')}`
                     }
                 })
                 const data = await res.json()

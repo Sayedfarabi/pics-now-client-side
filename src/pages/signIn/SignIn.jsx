@@ -142,7 +142,7 @@ const SignIn = () => {
                                 </div>
                                 <div className="form-control">
 
-                                    <input {...register("password", { required: "Password is must be required" })} type="text" name='password' placeholder="password" className="input input-bordered" required />
+                                    <input {...register("password", { required: "Password is must be required" })} type="password" name='password' placeholder="password" className="input input-bordered" required />
                                     {
                                         errors?.password &&
                                         <p className='text-red-500'>{errors?.password?.message}</p>

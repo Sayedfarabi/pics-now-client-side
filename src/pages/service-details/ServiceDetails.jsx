@@ -66,7 +66,7 @@ const ServiceDetails = () => {
     const updateReview = data => {
         if (data) {
 
-            fetch(`http://localhost:5000/updateReview?id=${modalData?._id}`, {
+            fetch(`https://pics-now-server-side.vercel.app/updateReview?id=${modalData?._id}`, {
                 method: "PATCH",
                 headers: {
                     "content-type": "application/json",

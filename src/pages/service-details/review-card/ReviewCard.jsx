@@ -18,7 +18,7 @@ const ReviewCard = ({ review, setModalData }) => {
     const myReviewsPath = `/my-reviews`;
 
     const deleteHandler = (_id) => {
-        fetch(`http://localhost:5000/deleteReview?id=${_id}`, {
+        fetch(`https://pics-now-server-side.vercel.app/deleteReview?id=${_id}`, {
             method: "DELETE",
             headers: {
                 "content-type": "application/json",

@@ -3,10 +3,14 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import logo from '../../assets/logo/logo.png';
 import toast from 'react-hot-toast';
+import { DataContext } from '../Root';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
-    // console.log(user);
+    const { users } = useContext(DataContext)
+    const dbUser = users.find(dbUser => dbUser?.email === user?.email);
+
+    // console.log(dbUser);
 
 
     const signOut = () => {
@@ -37,9 +41,12 @@ const Navbar = () => {
                         <li className='mx-2 rounded-md font-semibold hover:text-primary'>
                             <Link to={"/my-reviews"}>Your Reviews</Link>
                         </li>
-                        <li className='mx-2 rounded-md font-semibold hover:text-primary'>
-                            <Link to={"/add-service"}>Add Service</Link>
-                        </li>
+                        {
+                            (dbUser?.userRole === "admin") &&
+                            <li className='mx-2 rounded-md font-semibold hover:text-primary'>
+                                <Link to={"/add-service"}>Add Service</Link>
+                            </li>
+                        }
                         <li className='mx-2 rounded-md font-semibold hover:text-primary'>
                             <Link to={"/blog"}>Blog</Link>
                         </li>
@@ -69,9 +76,12 @@ const Navbar = () => {
                     <li className='mx-2 rounded-md font-semibold hover:text-primary'>
                         <Link to={"/my-reviews"}>Your Reviews</Link>
                     </li>
-                    <li className='mx-2 rounded-md font-semibold hover:text-primary'>
-                        <Link to={"/add-service"}>Add Service</Link>
-                    </li>
+                    {
+                        (dbUser?.userRole === "admin") &&
+                        <li className='mx-2 rounded-md font-semibold hover:text-primary'>
+                            <Link to={"/add-service"}>Add Service</Link>
+                        </li>
+                    }
                     <li className='mx-2 rounded-md font-semibold hover:text-primary'>
                         <Link to={"/blog"}>Blog</Link>
                     </li>

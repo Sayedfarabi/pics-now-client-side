@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import AdminRoute from "../admin-route/AdminRoute";
 import ErrorPage from "../components/ErrorPage";
 import Root from "../layout/Root";
 import AddService from "../pages/add-services/AddService";
@@ -37,7 +38,7 @@ export const routes = createBrowserRouter([
                 loader: async ({ params }) => await fetch(`https://pics-now-server-side.vercel.app/service/${params.id}`, {
                     headers: {
                         "content-type": "application/json",
-                        authorization: `bearer ${localStorage.getItem('furnitureBea-token')}`
+                        authorization: `bearer ${localStorage.getItem('picsNow')}`
                     }
                 })
             },
@@ -51,7 +52,7 @@ export const routes = createBrowserRouter([
             },
             {
                 path: "/add-service",
-                element: <PrivateRoute><AddService></AddService></PrivateRoute>
+                element: <PrivateRoute><AdminRoute><AddService></AddService></AdminRoute></PrivateRoute>
             },
             {
                 path: "/signIn",
