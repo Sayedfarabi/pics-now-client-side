@@ -63,14 +63,14 @@ const ReviewCard = ({ review, setModalData }) => {
                         {
                             (detailsPath === pathname) &&
                             <div>
-                                <p className=' font-semibold text-xl'>Reviewer Name : <span className='font-normal'>{reviewerName}</span></p>
+                                <p className=' font-semibold text-base md:text-xl'>Reviewer Name : <span className='font-normal'>{reviewerName}</span></p>
                                 <p className='text-sm font-semibold'>Reviewer Email : <span className='font-normal'>{reviewerEmail}</span></p>
                             </div>
                         }
                         {
                             (myReviewsPath === pathname) &&
                             <div>
-                                <p className=' font-semibold text-xl'>Service Title : {serviceTitle}</p>
+                                <p className=' font-semibold text-base md:text-xl'>Service Title : {serviceTitle}</p>
                                 <p className='text-sm'>Service ID : {serviceId}</p>
                             </div>
                         }
