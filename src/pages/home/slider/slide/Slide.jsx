@@ -8,19 +8,14 @@ const Slide = ({ data }) => {
     return (
         <div id={data?._id} className="carousel-item relative w-full">
             <div className='carousel-img w-full'>
-                <img src={data?.img} alt="fashion-slider" className="w-full max-h-[500px]" />
+                <img src={data?.img} alt="fashion-slider" className="w-full h-[500px] md:h-[650px]" />
             </div>
             <div className="absolute flex justify-start transform -translate-y-1/2 left-5 right-5 top-1/2">
                 <div className='text-white ml-4 '>
-                    <p className='text-2xl md:text-5xl'>Reasonable</p>
-                    <p className='text-2xl md:text-5xl'>Price for</p>
-                    <p className='text-2xl md:text-5xl text-secondary'>{data?.title?.serviceName}</p>
-                    <p className='text-2xl md:text-5xl text-primary'>Photography Service</p>
-                    {/* <div className='mx-auto w-full text-center my-8'>
-                        <button className='btn btn-sm bg-secondary text-black hover:text-orange-500'>
-                            <Link to="/#contact-me">Contact me</Link>
-                        </button>
-                    </div> */}
+                    <p className='text-3xl md:text-6xl mb-3 md:mb-6'>Reasonable</p>
+                    <p className='text-3xl md:text-6xl mb-3 md:mb-6'>Price for</p>
+                    <p className='text-3xl md:text-6xl text-secondary mb-3 md:mb-6'>{data?.title?.serviceName}</p>
+                    <p className='text-3xl md:text-5xl text-primary font-semibold'>Photography Service</p>
                 </div>
             </div>
             <div className="absolute flex justify-end transform -translate-y-1/2 left-5 right-5 bottom-0">

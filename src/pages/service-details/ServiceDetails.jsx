@@ -16,6 +16,7 @@ const ServiceDetails = () => {
     // Routes Loader Data : 
     const data = useLoaderData();
     const service = data?.data;
+    // console.log(service);
     // console.log(modalData);
     // Auth User Info : 
     const userName = user?.displayName;
@@ -95,7 +96,7 @@ const ServiceDetails = () => {
 
     return (
         <section className='bg-gradient-to-b from-indigo-100 via-purple-100 to-pink-100'>
-            <div className='px-8 md:px-12 py-8 md:py-12'>
+            <div className='p-8 md:p-12'>
                 <div className='py-8 text-center'>
                     <h2 className='text-2xl inline border-b-2 border-primary font-semibold'>SERVICE DESCRIPTION</h2>
                 </div>
@@ -113,7 +114,7 @@ const ServiceDetails = () => {
                         </div>
                     </div>
                     {
-                        serviceReviews.length > 0 &&
+                        serviceReviews?.length > 0 &&
                         <div className='my-4 md:my-8'>
                             <div className='my-8'>
                                 <h2 className='text-2xl inline border-b border-primary font-semibold'>User Reviews :</h2>
@@ -121,7 +122,7 @@ const ServiceDetails = () => {
                             <div>
                                 {
                                     serviceReviews &&
-                                    serviceReviews.map(review => {
+                                    serviceReviews?.map(review => {
                                         return <ReviewCard
                                             key={review?._id}
                                             review={review}

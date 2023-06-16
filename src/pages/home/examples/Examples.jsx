@@ -17,9 +17,14 @@ const Examples = () => {
                     </div>
                 </div>
                 <div className='text-center flex justify-center items-center'>
-                    <div>
+                    <div
+                        data-aos="zoom-out"
+                        data-aos-duration="1000"
+                        data-aos-delay="50"
+                        data-aos-once="false"
+                    >
                         <h5 className='text-xl'>Our</h5>
-                        <h4 className='text-2xl inline text-primary'>NICE PHOTOGRAPHY</h4>
+                        <h4 className='text-2xl inline text-primary font-semibold'>NICE PHOTOGRAPHY</h4>
                         <h5 className='text-xl'>Examples</h5>
                     </div>
                 </div>

@@ -5,7 +5,12 @@ const ClientTestimonialCard = ({ data }) => {
     return (
         <div className='w-72 border-2 rounded-md bg-base-100 mx-auto relative my-12 py-4'>
             <div className="avatar">
-                <div className="w-24 rounded-full absolute -top-20 -right-48 border-primary border-2">
+                <div className="w-24 rounded-full absolute -top-20 -right-48 border-primary border-2"
+                    data-aos="fade-down"
+                    data-aos-duration="1000"
+                    data-aos-delay="100"
+                    data-aos-easing="ease-in-out"
+                    data-aos-once="false">
                     <img src={image} alt="Reviewer" />
                 </div>
             </div>
